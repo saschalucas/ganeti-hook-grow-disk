@@ -24,7 +24,7 @@ You can use the following commands on the master node to install this hook in yo
 ```bash
 gnt-cluster command mkdir -p /etc/ganeti/hooks/disk-grow-post.d/
 install -o root -g root -m 0700 /source/path/to/this/script /etc/ganeti/hooks/disk-grow-post.d/00-grow-disk-online
-gnt-cluster copyfile /etc/ganeti/hooks/disk-grow-post.d/50-grow-disk-online
+gnt-cluster copyfile /etc/ganeti/hooks/disk-grow-post.d/00-grow-disk-online
 ```
 
 This hook will log into the instance's primary nodes syslog (i.e.  /var/log/syslog). Look there for general actions and errors.
