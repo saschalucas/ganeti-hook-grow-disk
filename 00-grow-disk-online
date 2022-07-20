@@ -106,7 +106,7 @@ disk_uuid="${!var_name_uuid}"
 disk_id_short="${disk_uuid%%-*}"
 
 # let's see if we can find one matching disk
-disk_id_qemu_line=`echo "info block" | ${SOCAT_COMMAND} | grep -F ${disk_id_short}`
+disk_id_qemu_line=`echo "info block" | ${SOCAT_COMMAND} | grep -F ${disk_id_short} | grep -v "Attached to"`
 [[ $(echo "${disk_id_qemu_line}" | wc -l) -eq 1 ]] || log_fail "found more then one disk that match ${disk_id_short}"
 disk_id_qemu=`echo "${disk_id_qemu_line}" | cut -d':' -f1 | cut -d' ' -f1`
 log_info "attempting to resize ${GANETI_INSTANCE_NAME} disk IDX=${GANETI_DISK} UUID=${disk_uuid} qemu-ID=${disk_id_qemu} from ${old_size}MiB to ${new_size}MiB"
